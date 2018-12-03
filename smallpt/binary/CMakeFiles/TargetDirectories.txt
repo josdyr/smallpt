@@ -1,0 +1,3 @@
+C:/Users/40223535/Desktop/smallpt/smallpt/binary/CMakeFiles/smallpt.dir
+C:/Users/40223535/Desktop/smallpt/smallpt/binary/CMakeFiles/ALL_BUILD.dir
+C:/Users/40223535/Desktop/smallpt/smallpt/binary/CMakeFiles/ZERO_CHECK.dir

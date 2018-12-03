@@ -1,5 +1,5 @@
 // smallpt, a Path Tracer by Kevin Beason, 2008
-
+#include <omp.h>
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -69,6 +69,8 @@ inline int toInt(double x) { return int(pow(clamp(x), 1/2.2) * 255 + .5); }
 // Routine to intersect rays with the scene of spheres. Return distance to collision of sphere, 0 if nothing
 inline bool intersect(const Ray &r, double &t, int &id) {
 	double n = sizeof(spheres) / sizeof(Sphere), d, inf = t = 1e20;
+	//#pragma omp parallel for schedule(dynamic, 1) private(r)
+	//#pragma omp parallel
 	for (int i = int(n); i--;) {
 		if ((d = spheres[i].intersect(r)) && d < t) {
 			t = d; id = i;
@@ -116,40 +118,25 @@ int main(int argc, char *argv[]) {
 	Ray cam(Vec(50,52,295.6), Vec(0,-0.042612,-1).norm());
 	Vec cx=Vec(w*.5135/h), cy=(cx%cam.d).norm()*.5135, r, *c=new Vec[w*h];
 
-	
+#pragma omp parallel for schedule(dynamic, 1) private(r)
 	for (int y=0; y<h; y++) {
 		unsigned short Xi[3]={0,0,y*y*y};
 		for (unsigned short x = 0; x < w; x++) {
 			for (int sy = 0, i = (h - y - 1)*w + x; sy < 2; sy++) {
 				for (int sx = 0; sx < 2; sx++, r = Vec()) {
-
-					//auto start = system_clock::now();
-					//#pragma omp parallel for schedule(dynamic, 1) private(r)
-
 					for (int s = 0; s < samps; s++) {
 						double r1 = 2 * erand48(Xi), dx = r1 < 1 ? sqrt(r1) - 1 : 1 - sqrt(2 - r1);
 						double r2 = 2 * erand48(Xi), dy = r2 < 1 ? sqrt(r2) - 1 : 1 - sqrt(2 - r2);
 						Vec d = cx * (((sx + .5 + dx) / 2 + x) / w - .5) + cy * (((sy + .5 + dy) / 2 + y) / h - .5) + cam.d;
 						r = r + radiance(Ray(cam.o + d * 140, d.norm()), 0, Xi)*(1. / samps);
 					}
-
-					//auto end = system_clock::now();
-					//auto total = duration_cast<milliseconds>(end - start).count();
-					//// Output time
-					//cout << total << "ms per sample (" << total / 1000 / 60 << "mins)" << endl;
-
 					c[i] = c[i] + Vec(clamp(r.x), clamp(r.y), clamp(r.z))*.25;
 				}
 			}
 		}
 	}
-	
 
-	// Write file
-	const char *img = samps + "_image.ppm";
-	cout << img << endl;
-
-	FILE *f = fopen(img, "w");
+	FILE *f = fopen("image.ppm", "w");
 	fprintf(f, "P3\n%d %d\n%d\n", w, h, 255);
 	for (int i = 0; i < w*h; i++) {
 		fprintf(f, "%d %d %d ", toInt(c[i].x), toInt(c[i].y), toInt(c[i].z));
