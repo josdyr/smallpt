@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <chrono>
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 using namespace chrono;
@@ -114,31 +115,49 @@ Vec radiance(const Ray &r, int depth, unsigned short *Xi){
 
 int main(int argc, char *argv[]) {
 
-	int w = 1024, h = 768, samps = 12; // argc==2 ? atoi(argv[1])/4 : 1;
+	int w = 1024 * (4 / 2);
+	int h = 768 * (4 / 2);
+
+	int w_resolution[6] = { 341, 682, 1024, 1365, 1706, 2048 };
+	int h_resolution[6] = { 256, 512, 768, 1024, 1280, 1536 };
+
+	int samps = 12;
+
 	Ray cam(Vec(50,52,295.6), Vec(0,-0.042612,-1).norm());
 	Vec cx=Vec(w*.5135/h), cy=(cx%cam.d).norm()*.5135, r, *c=new Vec[w*h];
 
-#pragma omp parallel for schedule(dynamic, 1) private(r)
-	for (int y=0; y<h; y++) {
-		unsigned short Xi[3]={0,0,y*y*y};
-		for (unsigned short x = 0; x < w; x++) {
-			for (int sy = 0, i = (h - y - 1)*w + x; sy < 2; sy++) {
-				for (int sx = 0; sx < 2; sx++, r = Vec()) {
-					for (int s = 0; s < samps; s++) {
-						double r1 = 2 * erand48(Xi), dx = r1 < 1 ? sqrt(r1) - 1 : 1 - sqrt(2 - r1);
-						double r2 = 2 * erand48(Xi), dy = r2 < 1 ? sqrt(r2) - 1 : 1 - sqrt(2 - r2);
-						Vec d = cx * (((sx + .5 + dx) / 2 + x) / w - .5) + cy * (((sy + .5 + dy) / 2 + y) / h - .5) + cam.d;
-						r = r + radiance(Ray(cam.o + d * 140, d.norm()), 0, Xi)*(1. / samps);
+	ofstream results("resolution_change.csv", ofstream::out);
+
+	for (int i = 0; i < 6; i++) {
+		auto start = system_clock::now();
+		for (int y = 0; y < h_resolution[i]; y++) {
+			unsigned short Xi[3] = { 0,0,y*y*y };
+			for (unsigned short x = 0; x < w_resolution[i]; x++) {
+				for (int sy = 0, i = (h - y - 1)*w + x; sy < 2; sy++) {
+					for (int sx = 0; sx < 2; sx++, r = Vec()) {
+						for (int s = 0; s < samps; s++) {
+							double r1 = 2 * erand48(Xi), dx = r1 < 1 ? sqrt(r1) - 1 : 1 - sqrt(2 - r1);
+							double r2 = 2 * erand48(Xi), dy = r2 < 1 ? sqrt(r2) - 1 : 1 - sqrt(2 - r2);
+							Vec d = cx * (((sx + .5 + dx) / 2 + x) / w - .5) + cy * (((sy + .5 + dy) / 2 + y) / h - .5) + cam.d;
+							r = r + radiance(Ray(cam.o + d * 140, d.norm()), 0, Xi)*(1. / samps);
+						}
+						c[i] = c[i] + Vec(clamp(r.x), clamp(r.y), clamp(r.z))*.25;
 					}
-					c[i] = c[i] + Vec(clamp(r.x), clamp(r.y), clamp(r.z))*.25;
 				}
 			}
 		}
-	}
+		auto end = system_clock::now();
+		auto total = duration_cast<milliseconds>(end - start).count();
+		std::cout << total << "ms" << endl;
+		results << total << endl;
 
-	FILE *f = fopen("image.ppm", "w");
-	fprintf(f, "P3\n%d %d\n%d\n", w, h, 255);
-	for (int i = 0; i < w*h; i++) {
-		fprintf(f, "%d %d %d ", toInt(c[i].x), toInt(c[i].y), toInt(c[i].z));
+		FILE *f = fopen("image.ppm", "w");
+		fprintf(f, "P3\n%d %d\n%d\n", w, h, 255);
+		for (int i = 0; i < w*h; i++) {
+			fprintf(f, "%d %d %d ", toInt(c[i].x), toInt(c[i].y), toInt(c[i].z));
+		}
 	}
+	results.close();
+
+	
 }

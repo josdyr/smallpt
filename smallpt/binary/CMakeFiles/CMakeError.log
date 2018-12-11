@@ -1,38 +1,38 @@
 Determining if the include file pthread.h exists failed with the following output:
 Change Dir: C:/Users/40223535/Desktop/smallpt/smallpt/binary/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/MSBuild/15.0/Bin/MSBuild.exe" "cmTC_691b5.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=15.0"
+Run Build Command:"C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/MSBuild/15.0/Bin/MSBuild.exe" "cmTC_c8549.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=15.0"
 Microsoft (R) Build Engine version 15.9.20+g88f5fadfbe for .NET Framework
 Copyright (C) Microsoft Corporation. All rights reserved.
 
-Build started 11/12/2018 17:15:13.
-Project "C:\Users\40223535\Desktop\smallpt\smallpt\binary\CMakeFiles\CMakeTmp\cmTC_691b5.vcxproj" on node 1 (default targets).
+Build started 11/12/2018 17:47:15.
+Project "C:\Users\40223535\Desktop\smallpt\smallpt\binary\CMakeFiles\CMakeTmp\cmTC_c8549.vcxproj" on node 1 (default targets).
 PrepareForBuild:
-  Creating directory "cmTC_691b5.dir\Debug\".
+  Creating directory "cmTC_c8549.dir\Debug\".
   Creating directory "C:\Users\40223535\Desktop\smallpt\smallpt\binary\CMakeFiles\CMakeTmp\Debug\".
-  Creating directory "cmTC_691b5.dir\Debug\cmTC_691b5.tlog\".
+  Creating directory "cmTC_c8549.dir\Debug\cmTC_c8549.tlog\".
 InitializeBuildStatus:
-  Creating "cmTC_691b5.dir\Debug\cmTC_691b5.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+  Creating "cmTC_c8549.dir\Debug\cmTC_c8549.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
 ClCompile:
-  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\bin\HostX86\x64\CL.exe /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_691b5.dir\Debug\\" /Fd"cmTC_691b5.dir\Debug\vc141.pdb" /Gd /TC /FC /errorReport:queue C:\Users\40223535\Desktop\smallpt\smallpt\binary\CMakeFiles\CMakeTmp\CheckIncludeFile.c
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\bin\HostX86\x64\CL.exe /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_c8549.dir\Debug\\" /Fd"cmTC_c8549.dir\Debug\vc141.pdb" /Gd /TC /FC /errorReport:queue C:\Users\40223535\Desktop\smallpt\smallpt\binary\CMakeFiles\CMakeTmp\CheckIncludeFile.c
   Microsoft (R) C/C++ Optimizing Compiler Version 19.16.27024.1 for x64
   Copyright (C) Microsoft Corporation.  All rights reserved.
   
-  cl /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_691b5.dir\Debug\\" /Fd"cmTC_691b5.dir\Debug\vc141.pdb" /Gd /TC /FC /errorReport:queue C:\Users\40223535\Desktop\smallpt\smallpt\binary\CMakeFiles\CMakeTmp\CheckIncludeFile.c
+  cl /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_c8549.dir\Debug\\" /Fd"cmTC_c8549.dir\Debug\vc141.pdb" /Gd /TC /FC /errorReport:queue C:\Users\40223535\Desktop\smallpt\smallpt\binary\CMakeFiles\CMakeTmp\CheckIncludeFile.c
   CheckIncludeFile.c
   
-c:\users\40223535\desktop\smallpt\smallpt\binary\cmakefiles\cmaketmp\checkincludefile.c(1): fatal error C1083: Cannot open include file: 'pthread.h': No such file or directory [C:\Users\40223535\Desktop\smallpt\smallpt\binary\CMakeFiles\CMakeTmp\cmTC_691b5.vcxproj]
-Done Building Project "C:\Users\40223535\Desktop\smallpt\smallpt\binary\CMakeFiles\CMakeTmp\cmTC_691b5.vcxproj" (default targets) -- FAILED.
+c:\users\40223535\desktop\smallpt\smallpt\binary\cmakefiles\cmaketmp\checkincludefile.c(1): fatal error C1083: Cannot open include file: 'pthread.h': No such file or directory [C:\Users\40223535\Desktop\smallpt\smallpt\binary\CMakeFiles\CMakeTmp\cmTC_c8549.vcxproj]
+Done Building Project "C:\Users\40223535\Desktop\smallpt\smallpt\binary\CMakeFiles\CMakeTmp\cmTC_c8549.vcxproj" (default targets) -- FAILED.
 
 Build FAILED.
 
-"C:\Users\40223535\Desktop\smallpt\smallpt\binary\CMakeFiles\CMakeTmp\cmTC_691b5.vcxproj" (default target) (1) ->
+"C:\Users\40223535\Desktop\smallpt\smallpt\binary\CMakeFiles\CMakeTmp\cmTC_c8549.vcxproj" (default target) (1) ->
 (ClCompile target) -> 
-  c:\users\40223535\desktop\smallpt\smallpt\binary\cmakefiles\cmaketmp\checkincludefile.c(1): fatal error C1083: Cannot open include file: 'pthread.h': No such file or directory [C:\Users\40223535\Desktop\smallpt\smallpt\binary\CMakeFiles\CMakeTmp\cmTC_691b5.vcxproj]
+  c:\users\40223535\desktop\smallpt\smallpt\binary\cmakefiles\cmaketmp\checkincludefile.c(1): fatal error C1083: Cannot open include file: 'pthread.h': No such file or directory [C:\Users\40223535\Desktop\smallpt\smallpt\binary\CMakeFiles\CMakeTmp\cmTC_c8549.vcxproj]
 
     0 Warning(s)
     1 Error(s)
 
-Time Elapsed 00:00:00.38
+Time Elapsed 00:00:00.35
 
 
