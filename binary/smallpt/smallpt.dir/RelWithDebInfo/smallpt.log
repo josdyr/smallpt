@@ -1,3 +1,5 @@
-﻿  smallpt.cpp
+﻿  Building Custom Rule C:/Users/40223535/Desktop/smallpt/smallpt/CMakeLists.txt
+  CMake does not need to re-run because C:/Users/40223535/Desktop/smallpt/binary/smallpt/CMakeFiles/generate.stamp is up-to-date.
+  smallpt.cpp
 c:\users\40223535\desktop\smallpt\smallpt\smallpt.cpp(147): warning C4838: conversion from 'int' to 'unsigned short' requires a narrowing conversion
   smallpt.vcxproj -> C:\Users\40223535\Desktop\smallpt\binary\smallpt\RelWithDebInfo\smallpt.exe

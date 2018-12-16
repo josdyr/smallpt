@@ -129,9 +129,12 @@ void generate_image(unsigned int i, int rows_per_thread) {
 	Vec r;
 	Vec *c = new Vec[w*h];
 
-	for (int y = start; y < end; y++) {
+	int w_resolution[6] = { 341, 682, 1024, 1365, 1706, 2048 };
+	int h_resolution[6] = { 256, 512, 768, 1024, 1280, 1536 };
+
+	for (int y = 0; y < h_resolution[i]; y++) {
 		unsigned short Xi[3] = { 0,0,y*y*y };
-		for (int x = 0; x < w; x++) {
+		for (int x = 0; x < w_resolution[i]; x++) {
 			for (int sy = 0, i = (h - y - 1)*w + x; sy < 2; sy++) {
 				for (int sx = 0; sx < 2; sx++) {
 					r = Vec();
@@ -155,16 +158,16 @@ int main(int argc, char *argv[]) {
 	auto num_threads = thread::hardware_concurrency();
 	int rows_per_thread = h / num_threads;
 
-	ofstream results("thread_pool.csv", ofstream::out);
+	ofstream results("omp_change_resolution.csv", ofstream::out);
 	/*ofstream results;
 	results.open("manual_mt.csv", std::ios_base::app);*/
 
-	for (int j = 0; j < 10; j++) {
+	for (int j = 0; j < 6; j++) {
 
 		auto start = system_clock::now();
 
 		vector<thread> threads;
-		for (int i = 0; i < num_threads; i++) { // w = (1/3), 2/3, 1, 4/3, 
+		for (int i = 0; i < num_threads; i++) {
 			threads.push_back(thread(generate_image, i, rows_per_thread));
 		}
 		for (auto &t : threads) {
@@ -174,7 +177,7 @@ int main(int argc, char *argv[]) {
 		auto end = system_clock::now();
 		auto total = duration_cast<milliseconds>(end - start).count();
 		std::cout << total << "ms" << endl;
-		results << "manual_mt" << "," << total << endl;
+		results << "omp_change_resolution" << "," << total << endl;
 
 		/*FILE *f = fopen("image.ppm", "w");
 		fprintf(f, "P3\n%d %d\n%d\n", w, h, 255);
