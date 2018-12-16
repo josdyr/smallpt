@@ -1,0 +1,4 @@
+C:/Users/40223535/Desktop/smallpt/binary/CMakeFiles/ALL_BUILD.dir
+C:/Users/40223535/Desktop/smallpt/binary/CMakeFiles/ZERO_CHECK.dir
+C:/Users/40223535/Desktop/smallpt/binary/smallpt/CMakeFiles/smallpt.dir
+C:/Users/40223535/Desktop/smallpt/binary/manual_multi_threading/CMakeFiles/manual_multi_threading.dir

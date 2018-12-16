@@ -1,0 +1,6 @@
+﻿  Building Custom Rule C:/Users/40223535/Desktop/smallpt/manual_multi_threading/CMakeLists.txt
+  CMake does not need to re-run because C:/Users/40223535/Desktop/smallpt/binary/manual_multi_threading/CMakeFiles/generate.stamp is up-to-date.
+  manual_multi_threading.cpp
+c:\users\40223535\desktop\smallpt\manual_multi_threading\manual_multi_threading.cpp(133): warning C4838: conversion from 'int' to 'unsigned short' requires a narrowing conversion
+c:\users\40223535\desktop\smallpt\manual_multi_threading\manual_multi_threading.cpp(167): warning C4018: '<': signed/unsigned mismatch
+  manual_multi_threading.vcxproj -> C:\Users\40223535\Desktop\smallpt\binary\manual_multi_threading\RelWithDebInfo\manual_multi_threading.exe
